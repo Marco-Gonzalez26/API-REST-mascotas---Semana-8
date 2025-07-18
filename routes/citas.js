@@ -52,7 +52,7 @@ router.post('/', async (req, res) => {
 // PUT - Actualizar cita
 router.put('/:id', async (req, res) => {
   try {
-    const { fecha, motivo, dueno, mascota, tratamiento } = req.body
+    const { fecha, motivo, dueno, mascota, tratamiento, estado } = req.body
     const cita = await Cita.findOne({ _id: req.params.id })
     if (!cita) {
       return res.status(404).json({ error: 'Cita no encontrada' })
@@ -62,7 +62,7 @@ router.put('/:id', async (req, res) => {
     cita.dueno = dueno
     cita.mascota = mascota
     cita.tratamiento = tratamiento
-
+    cita.estado = estado
     try {
       const citaActualizada = await cita.save()
       res.status(200).json(citaActualizada)

@@ -21,7 +21,7 @@ router.get('/:id', async (req, res) => {
   try {
     const tratamiento = await Tratamiento.findOne({
       _id: req.params.id
-    }).populate('mascota')
+    }).populate('mascota').populate('medicamento')
     res.status(200).json(tratamiento)
   } catch (err) {
     res.status(500).json({ error: err.message })

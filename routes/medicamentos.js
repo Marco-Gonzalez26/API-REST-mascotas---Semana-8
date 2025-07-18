@@ -7,8 +7,6 @@ const Mascota = require('../mongo_models/Mascota')
 router.get('/', async (req, res) => {
   try {
     const medicamentos = await Medicamento.find()
-      .populate('dueno')
-      .populate('tratamiento')
     res.status(200).json(medicamentos)
   } catch (err) {
     res.status(500).json({ error: err.message })
@@ -20,7 +18,7 @@ router.get('/:id', async (req, res) => {
   try {
     const medicamento = await Medicamento.findOne({
       _id: req.params.id
-    }).populate('dueno')
+    })
     res.status(200).json(medicamento)
   } catch (err) {
     res.status(500).json({ error: err.message })

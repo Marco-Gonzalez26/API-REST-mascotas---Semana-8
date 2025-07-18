@@ -18,7 +18,8 @@ const MedicamentoSchema = new Schema({
   },
   contraindicaciones: String,
   descripcion: String,
-  precio: { type: Number, required: true }
+  precio: { type: Number, required: true },
+  tratamientos: [{ type: Schema.Types.ObjectId, ref: 'Tratamiento' }]
 })
 
 module.exports = mongoose.model('Medicamento', MedicamentoSchema)
