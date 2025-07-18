@@ -83,7 +83,7 @@ router.delete('/:id', async (req, res) => {
       return res.status(404).json({ error: 'Dueño no encontrado' })
     }
     try {
-      await dueno.remove()
+      await dueno.deleteOne()
       res.status(200).json({ message: 'Dueño eliminado' })
     } catch (err) {
       res.status(500).json({ error: err.message })
